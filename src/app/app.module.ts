@@ -8,10 +8,17 @@ import { PatientComponent } from './components/patient/patient.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorService } from './services/interceptor.service';
+import { ToastModule } from '@syncfusion/ej2-angular-notifications';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
-  declarations: [AppComponent, PatientListComponent, PatientComponent],
-  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule],
+  declarations: [AppComponent, PatientListComponent, PatientComponent, ToastComponent],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastModule,
+  ],
   providers: [
     HttpClientModule,
     {

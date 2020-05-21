@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../../models/Patient';
 import { PatientListService } from '../../services/patient-list.service';
+import { ToastComponent } from '../../components/toast/toast.component';
 
 @Component({
   selector: 'app-patient-list',
@@ -15,7 +16,7 @@ export class PatientListComponent implements OnInit {
   ngOnInit() {
     this.patientListService.getPatientList().subscribe(
       (patients) => (this.patients = patients),
-      () => alert('Error')
+      () => new ToastComponent()
     );
   }
 }
