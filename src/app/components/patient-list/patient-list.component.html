@@ -1,3 +1,7 @@
-<app-patient *ngFor="let patient of patients" [patient]="patient">
-  <li>{{ patient.name }}</li>
-</app-patient>
+<div>
+  <app-patient *ngFor="let patient of patients" [patient]="patient">
+    <li>{{ patient.name }}</li>
+  </app-patient>
+
+  <div id="ej2Toast" #toast></div>
+</div>
