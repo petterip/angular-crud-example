@@ -17,17 +17,18 @@ export class PatientListService {
   host = 'patient-repository-api.herokuapp.com';
   port = '80';
   apiVersion = 'api';
-  baseUrl = `${this.protocol}://${this.host}:${this.port}/${this.apiVersion}/patient/`;
+  baseUrl = `${this.protocol}://${this.host}:${this.port}/${this.apiVersion}`;
 
   constructor(private http: HttpClient) { }
 
   getPatientList(): Observable<Patient[]> {
-    return this.http.get<Patient[]>(this.baseUrl);
-    // .pipe(retry(2), catchError(this.handleError.bind(this)));
+    return this.http.get<Patient[]>(this.baseUrl + '/patient/');
   }
 
-  // handleError(error: HttpErrorResponse) {
-  //   console.error('Error accessing ' + this.baseUrl);
-  //   return throwError(error);
-  // }
+  putPatient(patient: Patient): Observable<Patient> {
+    return this.http.put<Patient>(this.baseUrl + `/patient/${patient.id}/`, patient);
+  }
+  postPatient(patient: Patient): Observable<Patient> {
+    return this.http.post<Patient>(this.baseUrl + `/patient/`, patient);
+  }
 }

@@ -20,7 +20,13 @@ import { Configuration } from '../configuration';
 
 @Injectable()
 export class PatientService {
-  protected basePath = 'http://localhost:8080/';
+  protocol = 'http';
+  host = 'patient-repository-api.herokuapp.com';
+  port = '80';
+  apiVersion = 'api';
+  baseUrl = `${this.protocol}://${this.host}:${this.port}`;
+
+  protected basePath = this.baseUrl + '/';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
 
@@ -208,6 +214,7 @@ export class PatientService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
+    console.warn("in getPatients", { headers, with: this.configuration.withCredentials });
     return this.httpClient.request<Array<Patient>>(
       'get',
       `${this.basePath}/api/patient/`,

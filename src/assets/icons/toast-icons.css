@@ -49,7 +49,7 @@
 .toast-icons.e-warning::before {
   content: "\e703";
 }
-
+/*
 .e-file-delete-01:before {
   content: "\e700";
 }
@@ -2117,3 +2117,4 @@
 .e-BT_WeekView:before {
   content: "\e320";
 }
+*/
