@@ -17,3 +17,10 @@
 
 @import "../node_modules/@syncfusion/ej2-icons/styles/material.css";
 @import "./assets/icons/toast.scss";
+
+/* Body and html styles */
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}

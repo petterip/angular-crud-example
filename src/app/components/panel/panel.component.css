@@ -1,4 +1,4 @@
-/* header-section styles */
+/* Header-section styles */
 #header-section.main-header {
   border-bottom: 1px solid #d2d6de;
   height: 55px;
@@ -30,7 +30,7 @@
 #header-section .icon-menu {
   width: 40px;
 }
-/* custom code start */
+
 .sb-content-tab #wrapper {
   display: none;
 }
@@ -69,10 +69,8 @@
     width: 75%;
   }
 }
-/* custom code end */
-/*end of header-section styles */
 
-/*main-menu-header  styles */
+/* Main-menu-header styles */
 #sidebar-treeview .main-menu .main-menu-header {
   color: #656a70;
   padding: 15px;
@@ -81,26 +79,12 @@
   margin: 0;
 }
 
-/*end of main-menu-header styles */
-
-/*text input styles */
-#sidebar-treeview .main-menu .search-icon {
-  text-indent: 10px;
-  height: 30px;
-  width: 19em;
-}
-
-/*end of text input styles */
-
-/* table of content area styles */
+/* Table of content area styles */
 #sidebar-treeview .table-content {
   padding: 20px;
-  height: 8em;
 }
 
-/* end of table ofcontent area styles */
-
-/* content area styles */
+/* Content area styles */
 #main-text.main-content {
   overflow: hidden;
   width: 100%;
@@ -129,17 +113,6 @@
   font-weight: 300;
   color: grey;
 }
-
-/* end of content area styles */
-/* custom code start */
-/* body and html styles */
-body {
-  margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  -webkit-tap-highlight-color: transparent;
-}
-/* custom code end */
-/* end of body and html styles */
 
 /* newTab support styles */
 
@@ -172,8 +145,6 @@ body {
   height: 100%;
   text-align: initial;
 }
-
-/* end of newTab support styles */
 
 /* icon styles */
 @font-face {
@@ -236,5 +207,3 @@ body {
 #sidebar-treeview #main-treeview .icon-circle-thin::before {
   content: "\e808";
 }
-
-/* end of icon styles */

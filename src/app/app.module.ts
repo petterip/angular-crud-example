@@ -16,10 +16,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from '@syncfusion/ej2-angular-notifications';
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
-import { GridModule } from '@syncfusion/ej2-angular-grids';
+import { GridModule, ResizeService } from '@syncfusion/ej2-angular-grids';
 import { FormsModule } from '@angular/forms';
 import { DatePickerAllModule } from '@syncfusion/ej2-angular-calendars';
 import { SidebarModule, MenuAllModule, TreeViewAllModule } from '@syncfusion/ej2-angular-navigations';
+import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
 
 import { ApiModule } from './api/api.module';
 import { PanelComponent } from './components/panel/panel.component';
@@ -48,6 +49,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component'
     DatePickerAllModule,
     FormsModule,
     SidebarModule, MenuAllModule, TreeViewAllModule,
+    UploaderModule
   ],
   providers: [
     HttpClientModule,
@@ -56,6 +58,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component'
     EditService,
     ToolbarService,
     SortService,
+    ResizeService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

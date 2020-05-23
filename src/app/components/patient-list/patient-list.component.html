@@ -3,12 +3,12 @@
     [sortSettings]="sortOptions" (actionBegin)="actionBegin($event)" #grid>
     <e-columns>
       <e-column field="id" headerText="Patient ID" textAlign="Right" isPrimaryKey="true" [visible]='false'></e-column>
-      <e-column field="name" headerText="Name" width="120"></e-column>
-      <e-column field="project" headerText="Project" width="120"></e-column>
-      <e-column field="archive" headerText="Archive" editType="dropdownedit" [edit]="ddParams" width="150">
+      <e-column field="name" headerText="Name" width="150"></e-column>
+      <e-column field="project" headerText="Research project" width="100"></e-column>
+      <e-column field="archive" headerText="Archive" editType="dropdownedit" [edit]="archiveParams" width="100">
       </e-column>
-      <e-column field="attachment" headerText="File" width="150">
-      </e-column>
+      <!-- <e-column field="attachment" headerText="File" width="150"></e-column> -->
+      <e-column field='attachment' headerText='Attachment' [edit]='dpParams' width=200></e-column>
     </e-columns>
   </ejs-grid>
 
