@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Patient } from 'src/app/models/Patient';
+import { Patient } from '../../api/models/Patient';
 
 @Component({
   selector: 'app-patient',
@@ -9,9 +9,9 @@ import { Patient } from 'src/app/models/Patient';
 export class PatientComponent implements OnInit {
   @Input() patient: Patient;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   setClasses() {
     return {

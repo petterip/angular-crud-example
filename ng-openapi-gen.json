@@ -1,0 +1,5 @@
+{
+  "$schema": "./node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
+  "input": "https://patient-repository-api.herokuapp.com/api-docs/",
+  "output": "src/app/api"
+}

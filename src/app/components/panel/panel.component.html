@@ -1,0 +1,54 @@
+<div class="control-section">
+  <!-- sample level element  -->
+  <div class="col-lg-12 col-sm-12 col-md-12 center">
+    Click/Touch the button to view the sample
+  </div>
+  <div class="col-lg-12 col-sm-12 col-md-12 center">
+    <a class="e-btn" id="newTab" (click)="newTabClick()" target="_blank">Open in new Tab</a>
+  </div>
+  <!-- sample level element  -->
+  <div id="wrapper">
+    <div class="col-lg-12 col-sm-12 col-md-12" id="sidebar-section">
+      <div class="col-lg-12 col-sm-12 col-md-12">
+        <!--header-section  declaration -->
+        <div class="main-header" id="header-section">
+          <ul class="header-list">
+            <li class="float-left header-style icon-menu" id="hamburger" (click)="openClick()"></li>
+            <li class="float-left header-style nav-pane"><b>Navigation Pane</b></li>
+            <li class="header-style float-right support border-left"><b>Support</b></li>
+          </ul>
+        </div>
+        <!--end of header-section  declaration -->
+        <!-- sidebar element declaration -->
+        <ejs-sidebar id="sidebar-treeview" class="dock-menu" #sidebarTreeviewInstance [width]='width'
+          [mediaQuery]='mediaQuery' [target]='target'>
+          <div class="main-menu">
+            <div class="table-content">
+              <input type="text" placeholder="Search..." class="search-icon">
+              <p class="main-menu-header">TABLE OF CONTENTS</p>
+            </div>
+            <div>
+              <!-- Treevie element declaration -->
+              <ejs-treeview id="main-treeview" [fields]='field' expandOn='Click'></ejs-treeview>
+
+            </div>
+          </div>
+        </ejs-sidebar>
+        <!-- end of sidebar element -->
+
+        <!-- main-content declaration -->
+        <div class="main-content" id="main-text">
+          <div class="sidebar-content">
+            <h2 class="sidebar-heading">Angular CRUD example</h2>
+            <p class="paragraph-content">This application ...</p>
+            <div class="line"></div>
+
+            <app-patient-list></app-patient-list>
+
+          </div>
+        </div>
+        <!-- end of main-content -->
+      </div>
+    </div>
+  </div>
+</div>

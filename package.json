@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "generate-api": "ng-openapi-gen",
+    "generate-api-local": "ng-openapi-gen -c ng-openapi-local.json"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +25,9 @@
     "@syncfusion/ej2-angular-calendars": "^18.1.53",
     "@syncfusion/ej2-angular-grids": "^18.1.53",
     "@syncfusion/ej2-angular-inputs": "^18.1.53",
+    "@syncfusion/ej2-angular-navigations": "^18.1.52",
     "@syncfusion/ej2-angular-notifications": "^18.1.52",
+    "@syncfusion/ej2-angular-popups": "^18.1.53",
     "@syncfusion/ej2-base": "^18.1.53",
     "@syncfusion/ej2-buttons": "^18.1.52",
     "@syncfusion/ej2-dropdowns": "^18.1.53",
@@ -49,6 +53,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "ng-openapi-gen": "^0.11.1",
     "node-gyp": "^6.1.0",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",

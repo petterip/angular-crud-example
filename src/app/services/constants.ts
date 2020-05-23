@@ -1,4 +1,6 @@
-import { Toast, ToastModel, ToastPosition } from '@syncfusion/ej2-notifications';  // Import the toast component
+import { ToastModel } from '@syncfusion/ej2-notifications';
+
+export const CLASS_TOAST = "e-toast";
 
 const toastDefaults: ToastModel = {
   position: { X: "Right", Y: "Top" },
@@ -31,7 +33,7 @@ export const ToastType: Record<string, ToastModel> = {
     cssClass: 'e-toast-danger',
     icon: 'e-error toast-icons'
   },
-  notice: {
+  information: {
     ...toastDefaults,
     title: 'Information',
     cssClass: 'e-toast-info',

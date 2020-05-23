@@ -14,7 +14,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { CustomHttpUrlEncodingCodec } from '../encoder';
-import { Patient } from '../models/patient';
+import { Patient } from '../api/models/Patient';
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
 

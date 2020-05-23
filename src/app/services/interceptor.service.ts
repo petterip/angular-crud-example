@@ -15,7 +15,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class InterceptorService implements HttpInterceptor {
   retryOnFail = 2;
 
-  constructor() {}
+  constructor() { }
   handleError(error: HttpErrorResponse) {
     console.warn(`Error while accessing ${error.url}: ${error.error.error}`);
     console.log(error);
