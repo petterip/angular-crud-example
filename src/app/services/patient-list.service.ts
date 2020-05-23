@@ -4,7 +4,7 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Patient } from '../api/models/Patient';
+import { Patient } from '../api/models/patient';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';

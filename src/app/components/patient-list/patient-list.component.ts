@@ -4,7 +4,7 @@ import { EditSettingsModel, ToolbarItems, IEditCell, SaveEventArgs, DataStateCha
 import { Uploader, SelectedEventArgs } from '@syncfusion/ej2-inputs';
 import { FileInfo } from '@syncfusion/ej2-angular-inputs';
 
-import { Patient } from '../../api/models/Patient';
+import { Patient } from '../../api/models/patient';
 import { PatientService } from '../../api/services/patient.service';
 import { ToastService } from '../../services/toast.service';
 import { SpinnerComponent } from '../spinner/spinner.component';
