@@ -1,36 +1,14 @@
-declare var require: any
-
-// const compare = require("resemblejs").compare;
-
+/**
+ * An example of using ResebleJS library for comparing a given image against a static one.
+ */
 import { compare } from 'resemblejs';
 
-const image2 = require("../../assets/compare.png");
+const COMPARISON_IMAGE = 'assets/retina_2.jpg';
 
-// function loadImage(image: any, src: string) {
-//   return new Promise(resolve => {
-//     image.onload = () => resolve();
-//   });
-//   image.src = require(src);
-// }
-
-// let imagesUrls = ['asd', 'asd2'];
-// let images = [new Image(), new Image()];
-// Promise.all(images.map((e, i) => loadImage(e, imagesUrls[i]))).then(() => {
-//   // your code here
-// });
-
-// fetch(image2)
-//   .then(response => response.blob())
-//   .then(images => {
-//     // Then create a local URL for that image and print it
-//     outside = URL.createObjectURL(images)
-//     console.log(outside)
-//   })
-
-export function getDiff(image1: File): Promise<any> {
+export function getDiff(compareImage: File): Promise<any> {
   return Promise.all([
     fetch('assets/retina_2.jpg').then(response => response.blob()),
-    fileReader(image1)
+    fileReader(compareImage)
   ]).then(result => {
     const blob: Blob = result[0]
     const event: Event = result[1]

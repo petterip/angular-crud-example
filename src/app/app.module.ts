@@ -6,7 +6,6 @@ import { PatientService } from './api/services/patient.service';
 
 // Components
 import { AppComponent } from './app.component';
-import { PatientComponent } from './components/patient/patient.component';
 import { PatientListComponent } from './components/patient-list/patient-list.component';
 
 // Modules
@@ -26,15 +25,10 @@ import { ApiModule } from './api/api.module';
 import { PanelComponent } from './components/panel/panel.component';
 import { SpinnerComponent } from './components/spinner/spinner.component'
 
-// import { ListViewAllModule } from '@syncfusion/ej2-angular-lists';
-
-// import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
-
 @NgModule({
   declarations: [
     AppComponent,
     PatientListComponent,
-    PatientComponent,
     PanelComponent,
     SpinnerComponent
   ],
