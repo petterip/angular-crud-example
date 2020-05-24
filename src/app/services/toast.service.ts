@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Toast, ToastModel } from '@syncfusion/ej2-notifications';
-import { ToastType, CLASS_TOAST } from './constants';
+import { ToastType, CLASS_TOAST } from './constant';
 
 @Injectable({
   providedIn: 'root'

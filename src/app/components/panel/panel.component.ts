@@ -1,3 +1,6 @@
+/**
+ * Sidebar component to render the navigation.
+ */
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { SidebarComponent, NodeClickEventArgs, TreeViewComponent } from '@syncfusion/ej2-angular-navigations';
 

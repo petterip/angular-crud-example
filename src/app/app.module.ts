@@ -23,7 +23,7 @@ import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
 
 import { ApiModule } from './api/api.module';
 import { PanelComponent } from './components/panel/panel.component';
-import { SpinnerComponent } from './components/spinner/spinner.component'
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [

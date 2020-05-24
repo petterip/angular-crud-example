@@ -1,6 +1,55 @@
 # AngularCrudExample
 
+The application demonstrates using Angular with Syncfusion making use of a Spring Boot REST API. The project highlights the basic features of Angular, using TypeScript and utilizing components and services according. The project is built upon a Syncfusion grid component making use of simple CRUD operations through a REST API. A special emphasis has been placed on reusability, maintanance and simple workflow. Hence instead of creating and updating an API service on the client side, the API methods have first been documented in detail with OpenAPI and Swagger, and then package `ng-openapi-gen` is used to generate the client-side service. Whenever the API gets updated, `npm run generate-api` may be run to regenerate the service raedy to be coupled with components.
+
+As an UI framework, Angular Material and Syncfusion (with community license) were chosen as they have high maintainability and extensive user base. Syncfusion is also well documented and has a strong support for Angular.
+
+In addition to API call implementations the application generates additional data by analysing an uploaded image with `ResembleJS`. The full-size image uploaded by user is compared against a static one and only the result is posted to the backend. This is to demonstrate the high performance and optimizations done by Angular 9 CLI, as tradiationally the analysis would be done in the backend.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+
+## Live demo
+
+The application has been deployed to Netlify, try it out here:
+https://app-angular-crud-example.netlify.app/
+
+Application makes use of backend, an instance deplyed to Heroku:
+https://patient-repository-api.herokuapp.com/
+
+## Technology stack
+
+### Core technologies
+
+- [Angular 9](https://angular.io/)
+- [Angular Material](https://material.angular.io/)
+- [SyncFusion](https://www.syncfusion.com/products/communitylicense)
+- [SASS](http://sass-lang.com/)
+
+## Development server
+
+To deploy the application locally:
+
+```
+$ npm install
+$ ng serve
+```
+
+After staring the dev server, navigate to `http://localhost:4200/`.
+
+By default the application utlilizes a backend deployed remotely. Alternatively you may deploy an instance locally by checking out [patient-repository-api](https://github.com/petterip/patient-repository-api). After deploying the API locally, change the application to connect on localhost by running `npm run generate-api-local`.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Code style
+
+Code quality is ensured by `tslint` with `codelyzer` for Angular specific linting.
+
+### Bundling and packaging
+
+- [webpack](https://webpack.github.io/)
+- [npm](http://npmjs.com/)
 
 ## Development server
 
@@ -78,40 +127,11 @@ Make sure you have a running instance in another terminal before running end-to-
 $ npm run e2e
 ```
 
-## Code style
+## Code style and documentation
 
-Code quality is ensured by `tslint` with `codelyzer` for Angular 2 specific linting.
+Code quality is ensured by `tslint` with `codelyzer` for Angular 2 specific linting. [Typedoc](https://github.com/TypeStrong/typedoc) has been utilized in documenting the application.
 
-## Technology stack
+## Licenses
 
-### Core technologies
-
-- [Angular 9](https://angular.io/)
-- [Angular Material](https://material.angular.io/)
-- [SyncFusion](https://www.syncfusion.com/products/communitylicense)
-- [SASS](http://sass-lang.com/)
-
-### Bundling and packaging
-
-- [webpack](https://webpack.github.io/)
-- [npm](http://npmjs.com/)
-
-### Testing
-
-- [Karma](https://karma-runner.github.io/1.0/index.html)
-- [Jasmine](http://jasmine.github.io/)
-- [Protractor](http://www.protractortest.org/)
-- [Selenium](http://docs.seleniumhq.org/)
-
-### Code style
-
-- [codelyzer](https://github.com/mgechev/codelyzer)
-- [tslint](https://palantir.github.io/tslint/)
-
-### Documentation
-
-- [Typedoc](https://github.com/TypeStrong/typedoc)
-
-## License
-
-[MIT](/LICENSE)
+- [MIT](/LICENSE)
+- [3rd party licenses](/LICENSE_3rdparty) of the dependencies

@@ -1,3 +1,6 @@
+/**
+ * Spinner component to show during a HTTP request.
+ */
 import { Component } from '@angular/core';
 import { ElementRef, ViewChild } from '@angular/core';
 import { createSpinner, showSpinner, hideSpinner } from '@syncfusion/ej2-angular-popups';

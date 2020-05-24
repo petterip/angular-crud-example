@@ -1,11 +1,15 @@
 import { TestBed, async } from '@angular/core/testing';
+import { APP_BASE_HREF } from '@angular/common';
 import { AppComponent } from './app.component';
+import { PanelComponent } from './components/panel/panel.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
       declarations: [
-        AppComponent
+        AppComponent,
+        PanelComponent
       ],
     }).compileComponents();
   }));
@@ -20,12 +24,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('angular-crud-example');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-crud-example app is running!');
   });
 });

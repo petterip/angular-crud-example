@@ -1,18 +1,19 @@
+/**
+ * Component for rendering the patient grid. The grid has a toolbar for all the CRUD functionalities.
+ */
 import { Component, OnInit } from '@angular/core';
 import { ElementRef, ViewChild } from '@angular/core';
-import { EditSettingsModel, ToolbarItems, IEditCell, SaveEventArgs, Column, Grid } from '@syncfusion/ej2-angular-grids';
-import { Uploader, SelectedEventArgs } from '@syncfusion/ej2-inputs';
-import { FileInfo } from '@syncfusion/ej2-angular-inputs';
+import { EditSettingsModel, ToolbarItems, IEditCell, Grid } from '@syncfusion/ej2-angular-grids';
+import { DialogComponent } from '@syncfusion/ej2-angular-popups';
+import { Uploader } from '@syncfusion/ej2-inputs';
 
-import { Patient } from '../../api/models/patient';
 import { PatientService } from '../../api/services/patient.service';
 import { ToastService } from '../../services/toast.service';
 import { SpinnerComponent } from '../spinner/spinner.component';
+import { Patient } from '../../api/models/patient';
 
-import { compareFile } from '../../common/resemble';
-import { DialogComponent } from '@syncfusion/ej2-angular-popups';
-
-import { filePropToString, stringToFilePropArray } from '../../common/fileutil';
+import { PatientUploader } from './patient-uploader';
+import { UNNAMED } from '../../common/constant';
 
 @Component({
   selector: 'app-patient-list',
@@ -34,59 +35,38 @@ export class PatientListComponent implements OnInit {
   public boolParams: IEditCell;
   public elem: HTMLElement;
   public uploader: Uploader;
+  public patientUploader: PatientUploader;
 
   patients: Patient[];
 
   constructor(
     private patientListService: PatientService,
-    private toastService: ToastService) { }
+    private toastService: ToastService) {
+    this.patientUploader = new PatientUploader();
+  }
 
   ngOnInit() {
+    // Grid settings
     this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Dialog' };
     this.sortOptions = { columns: [{ field: 'name', direction: 'Ascending' }] };
     this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
     this.numericParams = { params: { decimals: 2 } };
     this.attachmentParams = {
-      create: () => {
-        this.elem = document.createElement('input');
-        return this.elem;
-      },
-      read: () => {
-        if (this.uploader.filesData.length > 0) {
-          const file: FileInfo = this.uploader.filesData[0];
-          this.uploader.upload(this.uploader.getFilesData()[0]);
-
-          return filePropToString(file);
-        }
-      },
-      destroy: () => {
-        this.uploader.destroy();
-      },
-      write: (args: SaveEventArgs) => {
-        // Get existing patient row details
-        const patient = args.rowData as Patient;
-
-        // Build the file upload input
-        this.uploader = new Uploader({
-          autoUpload: false,
-          multiple: false,
-          files: stringToFilePropArray(patient.attachment),
-          selected: eventArgs =>
-            compareFile(eventArgs).then(match => patient.match = match)
-        });
-        this.uploader.appendTo(this.elem);
-      }
+      create: this.patientUploader.create,
+      read: this.patientUploader.read,
+      destroy: this.patientUploader.destroy,
+      write: this.patientUploader.write,
     };
-    this.boolParams = { params: { checked: true } };
 
+    // Fetch a list of all the patients
     this.patientListService.getPatients().subscribe({
       next: this.getPatientListSucceeded.bind(this),
       error: this.getPatientListFailed.bind(this)
     });
   }
 
-
-  getPatientListSucceeded(patients: Patient[]) {
+  // Fetching the list succeeded
+  getPatientListSucceeded(patients: Patient[]): void {
     this.patients = patients;
     this.data = patients;
 
@@ -97,7 +77,8 @@ export class PatientListComponent implements OnInit {
     });
   }
 
-  getPatientListFailed(error: any) {
+  // Show a toast of fetching the list failed
+  getPatientListFailed(error: any): void {
     this.toastService.showErrorToast(this.toast.nativeElement, {
       title: 'Reading list failed',
       content: 'Is the API server running and CORS configured in the allowed domains?'
@@ -105,7 +86,8 @@ export class PatientListComponent implements OnInit {
     this.spinner.hide();
   }
 
-  addSucceeded(patient: Patient) {
+  // Show a toast of adding new patient entity succeeded
+  addSucceeded(patient: Patient): void {
     // Fetch the id for the added row in the grid
     const selectedRow: number = this.grid.getSelectedRowIndexes()[0] || 0;
 
@@ -116,18 +98,20 @@ export class PatientListComponent implements OnInit {
 
     this.toastService.showSuccessToast(this.toast.nativeElement, {
       title: 'New patient record added',
-      content: `Added patient ${patient.name} into ${patient.project}`
+      content: `Added patient ${patient.name || UNNAMED} into ${patient.project || UNNAMED}`
     });
   }
 
-  updateSucceeded(patient: Patient) {
+  // Show a toast of updating an existing patient entity succeeded
+  updateSucceeded(patient: Patient): void {
     this.grid.updateRowValue(patient.id, patient)
     this.toastService.showInformationToast(this.toast.nativeElement, {
       title: 'Patient record updated',
-      content: `Updated patient ${patient.name} in ${patient.project}`
+      content: `Updated patient ${patient.name || UNNAMED} in ${patient.project || UNNAMED}`
     });
   }
 
+  // Show a toast of removing a patient entity succeeded
   deleteSucceeded(): void {
     this.toastService.showInformationToast(this.toast.nativeElement, {
       title: 'Patient record removed',
@@ -135,6 +119,7 @@ export class PatientListComponent implements OnInit {
     });
   }
 
+  // Show a toast of an error making an API call
   operationFailed(error: any): void {
     this.toastService.showErrorToast(this.toast.nativeElement, {
       title: 'Operation failed',
@@ -142,6 +127,7 @@ export class PatientListComponent implements OnInit {
     });
   }
 
+  // Add a CSS class to the Add/Edit dialog to separate the two
   actionComplete(args): void {
     const dialog = args.dialog as DialogComponent;
 
@@ -150,6 +136,7 @@ export class PatientListComponent implements OnInit {
     }
   }
 
+  // Initiate an API call for the CRUD operations
   actionBegin(args): void {
     const body: Patient = Array.isArray(args.data) ?
       { ...args.data[0] } as Patient : { ...args.data } as Patient;
