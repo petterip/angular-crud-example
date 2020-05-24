@@ -1,14 +1,25 @@
 <div>
   <ejs-grid [dataSource]="data" [editSettings]="editSettings" [toolbar]="toolbar" [allowSorting]="true"
-    [sortSettings]="sortOptions" (actionBegin)="actionBegin($event)" #grid>
+    [sortSettings]="sortOptions" (actionBegin)="actionBegin($event)" (actionComplete)="actionComplete($event)" #grid>
     <e-columns>
       <e-column field="id" headerText="Patient ID" textAlign="Right" isPrimaryKey="true" [visible]='false'></e-column>
       <e-column field="name" headerText="Name" width="150"></e-column>
-      <e-column field="project" headerText="Research project" width="100"></e-column>
-      <e-column field="archive" headerText="Archive" editType="dropdownedit" [edit]="archiveParams" width="100">
+      <e-column field="project" headerText="Research project" editType="dropdownedit" [edit]="projectParams"
+        width="100"></e-column>
+      <e-column id="matchField" field="match" headerText="Sample match" editType='numericedit' [edit]='numericParams'
+        width="100" #matchField>
+        <ng-template #template let-data>
+          <div id="myProgress" class="pbar">
+            <div id="myBar" *ngIf="data.match < 50;" [style.width.%]=data.match class="bar progressdisable">
+              <div id="label" class="barlabel">{{data.match}}%</div>
+            </div>
+            <div id="myBar" *ngIf="data.match >= 50;" [style.width.%]=data.match class="bar">
+              <div id="label" class="barlabel">{{data.match}}%</div>
+            </div>
+          </div>
+        </ng-template>
       </e-column>
-      <!-- <e-column field="attachment" headerText="File" width="150"></e-column> -->
-      <e-column field='attachment' headerText='Attachment' [edit]='dpParams' width=200></e-column>
+      <e-column field='attachment' headerText='Sample attachment' [edit]='attachmentParams' width=200></e-column>
     </e-columns>
   </ejs-grid>
 

@@ -1,0 +1,37 @@
+::ng-deep .e-dialog.e-popup-open.add {
+  .e-numeric.e-input-group {
+    display: none;
+  }
+}
+
+#samplecontainer {
+  padding-top: 5px;
+}
+
+#myProgress {
+  position: relative;
+  height: 18px;
+  width: 10em;
+  text-align: left;
+  background-color: white;
+}
+:host-context(.highcontrast) /deep/ #overviewgrid #myProgress {
+  background-color: black;
+}
+
+#myBar {
+  position: absolute;
+  width: 10%;
+  height: 100%;
+  background-color: #00b300;
+}
+#myBar.progressdisable {
+  background-color: #df2222;
+}
+#label {
+  position: relative;
+  left: 10px;
+  line-height: 18px;
+  font-size: 10px;
+  color: white;
+}

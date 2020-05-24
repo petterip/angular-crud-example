@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
@@ -18,6 +19,115 @@ export class PatientService extends BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * Path part for operation getPatients
+   */
+  static readonly GetPatientsPath = '/api/patient/';
+
+  /**
+   * List all patients.
+   *
+   * Use this endpoint to fetch a list of all the patients
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getPatients()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getPatients$Response(params?: {
+
+  }): Observable<StrictHttpResponse<Array<Patient>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PatientService.GetPatientsPath, 'get');
+    if (params) {
+
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Patient>>;
+      })
+    );
+  }
+
+  /**
+   * List all patients.
+   *
+   * Use this endpoint to fetch a list of all the patients
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getPatients$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getPatients(params?: {
+
+  }): Observable<Array<Patient>> {
+
+    return this.getPatients$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<Patient>>) => r.body as Array<Patient>)
+    );
+  }
+
+  /**
+   * Path part for operation postPatient
+   */
+  static readonly PostPatientPath = '/api/patient/add';
+
+  /**
+   * Create a new patient.
+   *
+   * Use this endpoint to create a new patient record
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `postPatient()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  postPatient$Response(params: {
+      body: Patient
+  }): Observable<StrictHttpResponse<Patient>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PatientService.PostPatientPath, 'post');
+    if (params) {
+
+
+      rb.body(params.body, 'application/json');
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Patient>;
+      })
+    );
+  }
+
+  /**
+   * Create a new patient.
+   *
+   * Use this endpoint to create a new patient record
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `postPatient$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  postPatient(params: {
+      body: Patient
+  }): Observable<Patient> {
+
+    return this.postPatient$Response(params).pipe(
+      map((r: StrictHttpResponse<Patient>) => r.body as Patient)
+    );
   }
 
   /**
@@ -106,7 +216,7 @@ export class PatientService extends BaseService {
      * Id of the patient record to be updated
      */
     patientId: number;
-    body: Patient
+      body: Patient
   }): Observable<StrictHttpResponse<Patient>> {
 
     const rb = new RequestBuilder(this.rootUrl, PatientService.UpdatePatientPath, 'put');
@@ -143,119 +253,10 @@ export class PatientService extends BaseService {
      * Id of the patient record to be updated
      */
     patientId: number;
-    body: Patient
+      body: Patient
   }): Observable<Patient> {
 
     return this.updatePatient$Response(params).pipe(
-      map((r: StrictHttpResponse<Patient>) => r.body as Patient)
-    );
-  }
-
-  /**
-   * Path part for operation getPatients
-   */
-  static readonly GetPatientsPath = '/api/patient/';
-
-  /**
-   * List all patients.
-   *
-   * Use this endpoint to fetch a list of all the patients
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getPatients()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getPatients$Response(params?: {
-
-  }): Observable<StrictHttpResponse<Array<Patient>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, PatientService.GetPatientsPath, 'get');
-    if (params) {
-
-
-    }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<Patient>>;
-      })
-    );
-  }
-
-  /**
-   * List all patients.
-   *
-   * Use this endpoint to fetch a list of all the patients
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getPatients$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getPatients(params?: {
-
-  }): Observable<Array<Patient>> {
-
-    return this.getPatients$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<Patient>>) => r.body as Array<Patient>)
-    );
-  }
-
-  /**
-   * Path part for operation postPatient
-   */
-  static readonly PostPatientPath = '/api/patient/add';
-
-  /**
-   * Create a new patient.
-   *
-   * Use this endpoint to create a new patient record
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `postPatient()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  postPatient$Response(params: {
-    body: Patient
-  }): Observable<StrictHttpResponse<Patient>> {
-
-    const rb = new RequestBuilder(this.rootUrl, PatientService.PostPatientPath, 'post');
-    if (params) {
-
-
-      rb.body(params.body, 'application/json');
-    }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Patient>;
-      })
-    );
-  }
-
-  /**
-   * Create a new patient.
-   *
-   * Use this endpoint to create a new patient record
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `postPatient$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  postPatient(params: {
-    body: Patient
-  }): Observable<Patient> {
-
-    return this.postPatient$Response(params).pipe(
       map((r: StrictHttpResponse<Patient>) => r.body as Patient)
     );
   }

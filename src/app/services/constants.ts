@@ -1,15 +1,15 @@
 import { ToastModel } from '@syncfusion/ej2-notifications';
 
-export const CLASS_TOAST = "e-toast";
+export const CLASS_TOAST = 'e-toast';
 
 const toastDefaults: ToastModel = {
-  position: { X: "Right", Y: "Top" },
+  position: { X: 'Right', Y: 'Top' },
   showCloseButton: true,
   animation: {
     show: { effect: 'SlideRightIn', duration: 300, easing: 'ease' },
     hide: { effect: 'FadeOut', duration: 150, easing: 'ease' }
   }
-}
+};
 
 /**
  * Define toast type defaults for a warning, success, error and notice.
@@ -39,4 +39,4 @@ export const ToastType: Record<string, ToastModel> = {
     cssClass: 'e-toast-info',
     icon: 'e-info toast-icons'
   }
-}
+};

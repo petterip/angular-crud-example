@@ -14,8 +14,7 @@
         <div class="main-header" id="header-section">
           <ul class="header-list">
             <li class="float-left header-style icon-menu" id="hamburger" (click)="openClick()"></li>
-            <li class="float-left header-style nav-pane"><b>Navigation Pane</b></li>
-            <li class="header-style float-right support border-left"><b>Support</b></li>
+            <li class="float-left header-style nav-pane"><b>Angular CRUD example</b></li>
           </ul>
         </div>
         <!--end of header-section  declaration -->
@@ -28,8 +27,8 @@
             </div>
             <div>
               <!-- Treevie element declaration -->
-              <ejs-treeview id="main-treeview" [fields]='field' expandOn='Click'></ejs-treeview>
-
+              <ejs-treeview #tree id="main-treeview" [fields]='field' (nodeClicked)='nodeSelected($event)'>
+              </ejs-treeview>
             </div>
           </div>
         </ejs-sidebar>
@@ -38,8 +37,13 @@
         <!-- main-content declaration -->
         <div class="main-content" id="main-text">
           <div class="sidebar-content">
-            <h2 class="sidebar-heading">Angular CRUD example</h2>
-            <p class="paragraph-content">This application ...</p>
+            <h2 class="sidebar-heading">Patient Repository</h2>
+            <p class="paragraph-content"><img src="assets/sample.jpg">
+              This is an example of using Angular with Syncfusion and with a Spring Boot REST API.
+              The grid below provides simple CRUD operations for the API. Additionally,
+              when inserting a new record with "Add", and uploading an image, a match percentage
+              is calculated based on the difference in image charasteristics with a sample picture shown here.
+            </p>
             <div class="line"></div>
 
             <app-patient-list></app-patient-list>

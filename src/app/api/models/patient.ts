@@ -2,12 +2,7 @@
 export interface Patient {
 
   /**
-   * Name of the archive
-   */
-  archive?: string;
-
-  /**
-   * Name of an attachment
+   * Sample attachment filename
    */
   attachment?: string;
 
@@ -17,12 +12,17 @@ export interface Patient {
   id: number;
 
   /**
+   * Sample match percentage compared to a baseline
+   */
+  match?: number;
+
+  /**
    * Name of the patient
    */
   name: string;
 
   /**
-   * Name of the project
+   * Research project name
    */
   project?: string;
 }

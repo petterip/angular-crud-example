@@ -94,7 +94,7 @@
   width: 100%;
   height: 1px;
   border-bottom: 1px dashed #ddd;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 
 #main-text .sidebar-content {
@@ -103,7 +103,7 @@
 
 #main-text .sidebar-heading {
   color: #1c86c8;
-  margin: 40px 0;
+  margin: 20px 0;
   padding: 2px;
 }
 
@@ -111,6 +111,13 @@
   padding: 5px;
   font-weight: 300;
   color: grey;
+}
+
+#main-text .paragraph-content img {
+  margin-top: -5px;
+  width: 100px;
+  height: 100px;
+  float: right;
 }
 
 #sidebar-treeview #main-treeview .icon {
