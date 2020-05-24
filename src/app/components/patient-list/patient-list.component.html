@@ -7,7 +7,7 @@
       <e-column field="project" headerText="Research project" editType="dropdownedit" [edit]="projectParams"
         width="100"></e-column>
       <e-column id="matchField" field="match" headerText="Sample match" editType='numericedit' [edit]='numericParams'
-        width="100" #matchField>
+        width="100">
         <ng-template #template let-data>
           <div id="myProgress" class="pbar">
             <div id="myBar" *ngIf="data.match < 50;" [style.width.%]=data.match class="bar progressdisable">

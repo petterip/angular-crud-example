@@ -12,6 +12,8 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 import { compareFile } from '../../common/resemble';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 
+import { filePropToString, stringToFilePropArray } from '../../common/fileutil';
+
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
@@ -54,7 +56,7 @@ export class PatientListComponent implements OnInit {
           const file: FileInfo = this.uploader.filesData[0];
           this.uploader.upload(this.uploader.getFilesData()[0]);
 
-          return file.name;
+          return filePropToString(file);
         }
       },
       destroy: () => {
@@ -68,7 +70,7 @@ export class PatientListComponent implements OnInit {
         this.uploader = new Uploader({
           autoUpload: false,
           multiple: false,
-          files: patient.attachment ? [{ name: patient.attachment, size: 0 }] : undefined,
+          files: stringToFilePropArray(patient.attachment),
           selected: eventArgs =>
             compareFile(eventArgs).then(match => patient.match = match)
         });
@@ -126,20 +128,21 @@ export class PatientListComponent implements OnInit {
     });
   }
 
-  deleteSucceeded() {
+  deleteSucceeded(): void {
     this.toastService.showInformationToast(this.toast.nativeElement, {
       title: 'Patient record removed',
       content: `Removed patient from project`
     });
   }
 
-  operationFailed(error: any) {
+  operationFailed(error: any): void {
     this.toastService.showErrorToast(this.toast.nativeElement, {
       title: 'Operation failed',
       content: 'Is the API server still running?'
     });
   }
-  actionComplete(args) {
+
+  actionComplete(args): void {
     const dialog = args.dialog as DialogComponent;
 
     if (dialog) {
@@ -147,7 +150,7 @@ export class PatientListComponent implements OnInit {
     }
   }
 
-  actionBegin(args) {
+  actionBegin(args): void {
     const body: Patient = Array.isArray(args.data) ?
       { ...args.data[0] } as Patient : { ...args.data } as Patient;
     const patientId: number = body.id;
