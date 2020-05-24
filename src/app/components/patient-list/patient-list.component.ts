@@ -9,7 +9,7 @@ import { PatientService } from '../../api/services/patient.service';
 import { ToastService } from '../../services/toast.service';
 import { SpinnerComponent } from '../spinner/spinner.component';
 
-import { getDiff } from '../../common/resemble';
+import { compareFile } from '../../common/resemble';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 
 @Component({
@@ -60,17 +60,17 @@ export class PatientListComponent implements OnInit {
       destroy: () => {
         this.uploader.destroy();
       },
-      write: (args) => {
+      write: (args: SaveEventArgs) => {
         // Get existing patient row details
-        const patient = args.rowData;
+        const patient = args.rowData as Patient;
 
+        // Build the file upload input
         this.uploader = new Uploader({
           autoUpload: false,
           multiple: false,
           files: patient.attachment ? [{ name: patient.attachment, size: 0 }] : undefined,
           selected: eventArgs =>
-            this.openFile(eventArgs)
-              .then(match => args.rowData.match = match)
+            compareFile(eventArgs).then(match => patient.match = match)
         });
         this.uploader.appendTo(this.elem);
       }
@@ -83,11 +83,6 @@ export class PatientListComponent implements OnInit {
     });
   }
 
-  openFile(args: SelectedEventArgs): Promise<any> {
-    const input = args.event.target as HTMLInputElement;
-    const file: File = input.files[0];
-    return getDiff(file);
-  }
 
   getPatientListSucceeded(patients: Patient[]) {
     this.patients = patients;
@@ -115,7 +110,6 @@ export class PatientListComponent implements OnInit {
     // Replace the old row with updated data from the API
     this.data[selectedRow] = { ...this.data[selectedRow], ...patient };
     const row = this.data[selectedRow];
-    console.warn('addSucceeded', { selectedRow, patient, row, data: this.data });
     this.grid.refresh();
 
     this.toastService.showSuccessToast(this.toast.nativeElement, {
@@ -125,7 +119,6 @@ export class PatientListComponent implements OnInit {
   }
 
   updateSucceeded(patient: Patient) {
-    console.warn('updateSucceeded', patient);
     this.grid.updateRowValue(patient.id, patient)
     this.toastService.showInformationToast(this.toast.nativeElement, {
       title: 'Patient record updated',
@@ -141,28 +134,20 @@ export class PatientListComponent implements OnInit {
   }
 
   operationFailed(error: any) {
-    console.warn('API Call failed:', error);
     this.toastService.showErrorToast(this.toast.nativeElement, {
       title: 'Operation failed',
       content: 'Is the API server still running?'
     });
   }
   actionComplete(args) {
-    console.log("actionComplete", args)
     const dialog = args.dialog as DialogComponent;
 
     if (dialog) {
-      dialog.element.classList.add("AAAAADDDDDDDDEEDD");
       dialog.element.classList.add(args.requestType);
     }
   }
-  actionBegin(args) {
-    const dialog = args.dialog as DialogComponent;
 
-    if (dialog) {
-      dialog.element.classList.add("AAAAADDDDDDDDEEDD");
-      dialog.element.classList.add(args.requestType);
-    }
+  actionBegin(args) {
     const body: Patient = Array.isArray(args.data) ?
       { ...args.data[0] } as Patient : { ...args.data } as Patient;
     const patientId: number = body.id;
@@ -178,7 +163,6 @@ export class PatientListComponent implements OnInit {
       });
     }
     if (args.requestType === 'save' && args.action === 'add') {
-      console.log("adding ", { args, body })
       this.patientListService.postPatient({ body }).subscribe({
         next: patient => this.addSucceeded(patient),
         error: this.operationFailed.bind(this)
@@ -189,7 +173,5 @@ export class PatientListComponent implements OnInit {
         error: this.operationFailed.bind(this)
       });
     }
-
-    console.warn('actionBegin', args);
   }
 }

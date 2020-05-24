@@ -5,10 +5,18 @@
  * https://github.com/rsmbl/Resemble.js
  */
 import { compare } from 'resemblejs';
+import { SelectedEventArgs } from '@syncfusion/ej2-angular-inputs';
 
 const BASELINE_IMAGE = 'assets/sample.jpg';
 
-export function getDiff(userImageFile: File): Promise<any> {
+
+export function compareFile(args: SelectedEventArgs): Promise<any> {
+  const input = args.event.target as HTMLInputElement;
+  const file: File = input.files[0];
+  return getFileDiff(file);
+}
+
+function getFileDiff(userImageFile: File): Promise<any> {
   return Promise.all([
     fetch(BASELINE_IMAGE).then(response => response.blob()),
     fileReader(userImageFile)
