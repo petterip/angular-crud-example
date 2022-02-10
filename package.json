@@ -33,7 +33,7 @@
     "@syncfusion/ej2-dropdowns": "^18.1.53",
     "@syncfusion/ej2-icons": "^18.1.52",
     "@syncfusion/ej2-popups": "^18.1.53",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "resemblejs": "^3.2.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
