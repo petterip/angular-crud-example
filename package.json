@@ -34,7 +34,7 @@
     "@syncfusion/ej2-icons": "^18.1.52",
     "@syncfusion/ej2-popups": "^18.1.53",
     "node-sass": "^7.0.0",
-    "resemblejs": "^3.2.4",
+    "resemblejs": "^5.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -55,7 +55,7 @@
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "ng-openapi-gen": "^0.11.1",
-    "node-gyp": "^6.1.0",
+    "node-gyp": "^10.2.0",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
